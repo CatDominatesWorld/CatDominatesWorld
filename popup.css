@@ -1,0 +1,100 @@
+p {
+ color: black;
+}
+
+h3 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    color: white;
+}
+
+h4 {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    margin-left: 10px;
+    color: white;
+}
+
+body {
+    width: 300px;
+    height: 200px;
+    margin: 0px !important;
+    background: url('/bg.jpg');
+    background-size: 300px 250px;
+}
+
+#bar1 {
+    float: left;
+    background-color: none;
+    border: 0.5px solid white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 27px;
+}
+
+#bar2 {
+    float: left;
+    background-color: none;
+    border: 0.5px solid white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 27px;
+}
+
+#bar3 {
+    float: left;
+    background-color: none;
+    border: 0.5px solid white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 27px;
+}
+
+#bar4 {
+    float: left;
+    background-color: none;
+    border: 0.5px solid white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 27px;
+}
+
+#bar5 {
+    float: left;
+    background-color: none;
+    border: 0.5px solid white;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 4px 27px;
+}
+
+#main_header {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    border-bottom: 1px solid black;
+    background: black;
+    color: white;
+}
+
+#comment {
+    float: left;
+    background-color: none;
+    border: 0.5px solid black;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 279px;
+}
+
+#bar {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    border: 0px;
+}
