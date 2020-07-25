@@ -16,61 +16,62 @@ h4 {
 }
 
 body {
-    width: 300px;
-    height: 200px;
+    width: 400px;
+    height: 350px;
     margin: 0px !important;
-    background: url('/bg.jpg');
-    background-size: 300px 250px;
+    background: url('/bg_close.jpg');
+    background-size: 400px 250px;
+    background-position: 0px 40px;
 }
 
 #bar1 {
     float: left;
-    background-color: none;
+    background-color: black;
     border: 0.5px solid white;
     text-align: center;
     display: inline-block;
     cursor: pointer;
-    padding: 4px 27px;
+    padding: 4px 32px;
 }
 
 #bar2 {
     float: left;
-    background-color: none;
+    background-color: black;
     border: 0.5px solid white;
     text-align: center;
     display: inline-block;
     cursor: pointer;
-    padding: 4px 27px;
+    padding: 4px 32px;
 }
 
 #bar3 {
     float: left;
-    background-color: none;
+    background-color: black;
     border: 0.5px solid white;
     text-align: center;
     display: inline-block;
     cursor: pointer;
-    padding: 4px 27px;
+    padding: 4px 32px;
 }
 
 #bar4 {
     float: left;
-    background-color: none;
+    background-color: black;
     border: 0.5px solid white;
     text-align: center;
     display: inline-block;
     cursor: pointer;
-    padding: 4px 27px;
+    padding: 4px 32px;
 }
 
 #bar5 {
     float: left;
-    background-color: none;
+    background-color: black;
     border: 0.5px solid white;
     text-align: center;
     display: inline-block;
     cursor: pointer;
-    padding: 4px 27px;
+    padding: 4px 32px;
 }
 
 #main_header {
@@ -92,9 +93,29 @@ body {
     padding: 10px 279px;
 }
 
+#level_control {
+    position: fixed;
+    width: 400px;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 15px;
+    background-color: black;
+}
+
 #bar {
     padding-left: 10px;
     padding-right: 10px;
     margin-bottom: 10px;
     border: 0px;
+}
+
+#onoff {
+    height: 10px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 133px;
+    margin-top: 125px;
+    /* background-color: red; */
 }
