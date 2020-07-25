@@ -21,16 +21,4 @@
     },
 
     "permissions": ["tabs", "<all_urls>"]
-
-    // "permissions": [
-    //   "activeTab"
-    // ],
-
-    // "content_scripts": [
-    //     {
-    //         "matches": ["<all_urls>"],
-    //         "css": ["popup.css"],
-    //         "js": ["background.js"]
-    //     }
-    // ]
 }
