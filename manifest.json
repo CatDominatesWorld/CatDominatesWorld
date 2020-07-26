@@ -15,10 +15,12 @@
             "128": "icon.png"
     },
 
-    "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "run_at": "document_idle",
+        "js": ["content.js"]
+      }],
+
 
     "permissions": ["tabs", "<all_urls>"]
 }
