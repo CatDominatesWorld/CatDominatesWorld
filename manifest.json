@@ -24,6 +24,10 @@
         "scripts":["background.js"]
     },
 
+    "web_accessible_resources": [
+        "src/nyancat/*"
+    ],
+
 
     "permissions": ["tabs", "<all_urls>","storage","browsingData"]
 }
