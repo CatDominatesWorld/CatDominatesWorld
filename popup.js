@@ -11,7 +11,7 @@ var green = '#00FF00';
 var blue = '#0000FF';
 var black = '#000000';
 var number = 0;
-
+var level = 0;
 
 function changeColor1(){
     level1.style.backgroundColor = blue;
@@ -66,62 +66,93 @@ function changeBackground(){
     }
 }
 
-level1.addEventListener("click",function(){
+level1.addEventListener("click", function(){
+    saveAndNotifyLevel(1);
     changeColor1();
     document.body.style.backgroundImage = "url('/bg.jpg')";
 })
 
 level2.addEventListener("click",function(){
+    saveAndNotifyLevel(2);
     changeColor2();
     document.body.style.backgroundImage = "url('/bg_level2.jpg')";
 })
 
 level3.addEventListener("click",function(){
+    saveAndNotifyLevel(3);
     changeColor3();
     document.body.style.backgroundImage = "url('/bg_level3.jpg')";
 })
 
 level4.addEventListener("click",function(){
+    saveAndNotifyLevel(4);
     changeColor4();
     document.body.style.backgroundImage = "url('/bg_level4.jpg')";
 })
 
 level5.addEventListener("click",function(){
+    saveAndNotifyLevel(5);
     changeColor5();
     document.body.style.backgroundImage = "url('/bg_level5.jpg')";
 })
 
 onoff.addEventListener("click",function(){
     changeBackground();
+    if (number === 0){
+        saveAndNotifyLevel(0);
+    }
 })
 
-// chrome.tabs.getSelected(null, function(tab) {
-//     chrome.tabs.sendMessage(tab.id, {method: "getText"}, function(response) {
-//         if(response.method=="getText"){
-//             alltext = response.data;
-//         }
-//     });
-// });
 
-chrome.runtime.onMessage.addListener(function(request, sender) {
-  if (request.action == "getSource") {
-    message.innerText = request.source;
-  }
-});
-
-function onWindowLoad() {
-
-  var message = document.querySelector('#message');
-
-  chrome.tabs.executeScript(null, {
-    file: "getPagesSource.js"
-  }, function() {
-    // If you try and inject into an extensions page or the webstore/NTP you'll get an error
-    if (chrome.runtime.lastError) {
-      message.innerText = 'There was an error injecting script : \n' + chrome.runtime.lastError.message;
-    }
-  });
-
+function saveAndNotifyLevel(_level){
+    chrome.runtime.sendMessage({
+        message: 'setLevel',
+        level: _level
+      });
+      chrome.storage.local.set({
+        'options': _level
+    });
 }
 
-window.onload = onWindowLoad;
+init = function() {
+    chrome.storage.local.get('options', function(options) {
+        if(Object.keys(options).length === 0) {
+            chrome.storage.local.set({
+                'options': level
+            });
+        } else {
+            level = options.options
+        }
+
+        saveAndNotifyLevel(level);
+        switch(level){
+            case 0:
+                document.body.style.backgroundImage = "url('/bg_close.jpg')";
+                break;
+            case 1:
+                changeColor1();
+                document.body.style.backgroundImage = "url('/bg.jpg')";
+                break;
+            case 2:
+                changeColor2();
+                document.body.style.backgroundImage = "url('/bg_level2.jpg')";
+                break;
+            case 3:
+                changeColor3();
+                document.body.style.backgroundImage = "url('/bg_level3.jpg')";
+                break;
+            case 4:
+                changeColor4();
+                document.body.style.backgroundImage = "url('/bg_level4.jpg')";
+                break;
+            case 5:
+                changeColor5();
+                document.body.style.backgroundImage = "url('/bg_level5.jpg')";
+                break;
+            default:
+                console.log(error);
+        }   
+    })
+}
+
+window.onload = init;
