@@ -16,9 +16,9 @@
 
 ### 설치
 
-master에 있는 폴더 전체를 다운로드 합니다. [Chrome 확장 프로그램 목록](chrome://extensions/)에서 개발자모드를 허용한 후 압축 해제된 폴더를 로드합니다.
+이 디렉토리의 `content.js`에서 `API_URL`값을 `서버 주소:포트 번호/translate`로 변경해야 합니다.
 
-백엔드는 해당 문서를 참고하여 연 후 `content.js`에서 `API_URL`값을 `서버 주소:포트 번호/translate`로 변경하면 됩니다.
+master에 있는 폴더 전체를 clone하고, [Chrome 확장 프로그램 목록](chrome://extensions/)에서 개발자모드를 허용한 후 압축 해제된 폴더를 로드합니다.
 
 ### 기여자
 - [3-24](https://github.com/3-24)
