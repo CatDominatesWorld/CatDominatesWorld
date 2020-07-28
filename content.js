@@ -3,6 +3,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         API_URL = "https://192.249.19.244:1343/translate"
         var level = request.level;
         var body = document.body.innerHTML;
+        var url = window.location.href;
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function() {
@@ -16,7 +17,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             content: body,
-            level: level
+            level: level,
+            url: url
         }));
     }
   })
