@@ -10,8 +10,18 @@ var yellow = '#FFFF00';
 var green = '#00FF00';
 var blue = '#0000FF';
 var black = '#000000';
-var number = 0;
-var level = 0;
+var Options = {
+    "enable": false,
+    "level": 0
+}
+
+function changeColor0(){
+    level1.style.backgroundColor = black;
+    level2.style.backgroundColor = black;
+    level3.style.backgroundColor = black;
+    level4.style.backgroundColor = black;
+    level5.style.backgroundColor = black;
+}
 
 function changeColor1(){
     level1.style.backgroundColor = blue;
@@ -53,81 +63,14 @@ function changeColor5(){
     level5.style.backgroundColor = red;
 }
 
-function changeBackground(){
-
-    if(number==0){
-        document.body.style.backgroundImage = "url('/bg.jpg')";
-        number=1;
-    }
-
-    else if(number==1) {
-        document.body.style.backgroundImage = "url('/bg_close.jpg')";
-        number=0;
-    }
-}
-
-level1.addEventListener("click", function(){
-    saveAndNotifyLevel(1);
-    changeColor1();
-    document.body.style.backgroundImage = "url('/bg.jpg')";
-})
-
-level2.addEventListener("click",function(){
-    saveAndNotifyLevel(2);
-    changeColor2();
-    document.body.style.backgroundImage = "url('/bg_level2.jpg')";
-})
-
-level3.addEventListener("click",function(){
-    saveAndNotifyLevel(3);
-    changeColor3();
-    document.body.style.backgroundImage = "url('/bg_level3.jpg')";
-})
-
-level4.addEventListener("click",function(){
-    saveAndNotifyLevel(4);
-    changeColor4();
-    document.body.style.backgroundImage = "url('/bg_level4.jpg')";
-})
-
-level5.addEventListener("click",function(){
-    saveAndNotifyLevel(5);
-    changeColor5();
-    document.body.style.backgroundImage = "url('/bg_level5.jpg')";
-})
-
-onoff.addEventListener("click",function(){
-    changeBackground();
-    if (number === 0){
-        saveAndNotifyLevel(0);
-    }
-})
-
-
-function saveAndNotifyLevel(_level){
-    chrome.runtime.sendMessage({
-        message: 'setLevel',
-        level: _level
-      });
-      chrome.storage.local.set({
-        'options': _level
-    });
-}
-
-init = function() {
-    chrome.storage.local.get('options', function(options) {
-        if(Object.keys(options).length === 0) {
-            chrome.storage.local.set({
-                'options': level
-            });
-        } else {
-            level = options.options
-        }
-
-        saveAndNotifyLevel(level);
-        switch(level){
+function applyOption(){
+    _enable = Options["enable"];
+    _level = Options["level"];
+    if (_enable){
+        switch(_level){
             case 0:
-                document.body.style.backgroundImage = "url('/bg_close.jpg')";
+                changeColor0();
+                document.body.style.backgroundImage = "url('/bg.jpg')";
                 break;
             case 1:
                 changeColor1();
@@ -151,7 +94,80 @@ init = function() {
                 break;
             default:
                 console.log(error);
-        }   
+        }
+    }
+    else{
+        document.body.style.backgroundImage = "url('/bg_close.jpg')";
+    }
+    saveAndNotifyLevel();
+}
+
+level1.addEventListener("click", function(){
+    if (!Options["enable"]) return;
+    Options["level"] = 1;
+    applyOption();
+})
+
+level2.addEventListener("click",function(){
+    if (!Options["enable"]) return;
+    Options["level"] = 2;
+    applyOption();
+})
+
+level3.addEventListener("click",function(){
+    if (!Options["enable"]) return;
+    Options["level"] = 3;
+    applyOption();
+})
+
+level4.addEventListener("click",function(){
+    if (!Options["enable"]) return;
+    Options["level"] = 4;
+    applyOption();
+})
+
+level5.addEventListener("click",function(){
+    if (!Options["enable"]) return;
+    Options["level"] = 5;
+    applyOption();
+})
+
+onoff.addEventListener("click",function(){
+    Options["enable"] = !Options["enable"];
+    applyOption();
+})
+
+
+function saveAndNotifyLevel(){
+    const _enable = Options["enable"];
+    const _level = Options["level"];
+    if (_enable){
+        chrome.runtime.sendMessage({
+            message: 'setLevel',
+            level: _level
+        });
+    }
+    else{
+        chrome.runtime.sendMessage({
+            message: 'setLevel',
+            level: 0
+        }); 
+    }
+      chrome.storage.local.set({
+        'options': Options
+    });
+}
+
+init = function() {
+    chrome.storage.local.get('options', function(options) {
+        if(Object.keys(options).length === 0) {
+            chrome.storage.local.set({
+                'options': Options
+            });
+        } else {
+            Options = options.options
+        }
+        applyOption();
     })
 }
 
